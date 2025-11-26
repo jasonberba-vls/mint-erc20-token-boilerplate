@@ -1,7 +1,14 @@
-require('dotenv').config();
+require("dotenv").config();
 require("@nomiclabs/hardhat-ethers");
 
-const { RPC_URL, PRIVATE_KEY } = process.env;
+const {
+  ETH_RPC_URL,
+  ETH_PRIVATE_KEY,
+  BSC_RPC_URL,
+  BSC_PRIVATE_KEY,
+  POL_RPC_URL,
+  POL_PRIVATE_KEY,
+} = process.env;
 
 module.exports = {
   solidity: {
@@ -15,12 +22,29 @@ module.exports = {
       },
     ],
   },
-  defaultNetwork: "sepolia",
+  // defaultNetwork: "sepolia",
+  // defaultNetwork: "BscTestnet",
+  defaultNetwork: "PolTestnet",
+
   networks: {
     hardhat: {},
+
+    // Ethereum Sepolia
     sepolia: {
-      url: RPC_URL,
-      accounts: [`0x${PRIVATE_KEY}`]
-    }
+      url: ETH_RPC_URL,
+      accounts: [`${ETH_PRIVATE_KEY}`],
+    },
+
+    // BSC TESTNET
+    BscTestnet: {
+      url: BSC_RPC_URL,
+      accounts: [`${BSC_PRIVATE_KEY}`],
+    },
+
+    // POL TESTNET
+    PolTestnet: {
+      url: POL_RPC_URL,
+      accounts: [`${POL_PRIVATE_KEY}`],
+    },
   },
-}
+};
